@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { environment } from 'src/environments/environment';
-import { DataService } from '../data/data.service';
+import { environment } from '../../environments/environment';
+import { DataService } from '../../data/data.service';
 
 @Component({
-  selector: 'app-mapa',
-  templateUrl: './mapa.component.html',
-  styleUrls: ['./mapa.component.scss'],
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.scss'],
 })
-export class MapaComponent implements OnInit {
+export class MapComponent implements OnInit {
   constructor(private dataService: DataService) {}
   ngOnInit() {
     const map = new mapboxgl.Map({

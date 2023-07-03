@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-app": {
+    "mapbox": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/my-app",
+            "outputPath": "dist/mapbox",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "my-app:build:production"
+              "browserTarget": "mapbox:build:production"
             },
             "development": {
-              "browserTarget": "my-app:build:development"
+              "browserTarget": "mapbox:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "my-app:build"
+            "browserTarget": "mapbox:build"
           }
         },
         "test": {
@@ -102,6 +102,6 @@
     }
   },
   "cli": {
-    "analytics": "97462872-08be-4a51-9609-d686af4878d6"
+    "analytics": "b6093ed5-c700-434d-97de-e2cbb9df67e1"
   }
 }
