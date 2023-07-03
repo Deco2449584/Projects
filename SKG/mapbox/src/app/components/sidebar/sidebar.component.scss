@@ -1,0 +1,87 @@
+.modulos {
+  width: 64px;
+  height: 300px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  #psm {
+    background-image: url(../../../assets/img/PMV.svg);
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 50px;
+    cursor: pointer;
+    height: 50px;
+  }
+  #aforo {
+    background-image: url(../../../assets/img/Aforo.svg);
+
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 50px;
+    cursor: pointer;
+    height: 50px;
+  }
+
+  #clima {
+    background-image: url(../../../assets/img/Lateral.svg);
+
+    background-repeat: no-repeat;
+    margin-left: 6px;
+    margin-top: 10px;
+    width: 50px;
+    cursor: pointer;
+    height: 50px;
+  }
+  #police {
+    background-image: url(../../../assets/img/Agentes.svg);
+
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 50px;
+    cursor: pointer;
+    height: 50px;
+  }
+  #ad {
+    background-image: url(../../../assets/img/Incidentes.svg);
+
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 50px;
+    cursor: pointer;
+    height: 50px;
+  }
+  #semaforo {
+    background-image: url(../../../assets/img/Tráfico.svg);
+
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 50px;
+    cursor: pointer;
+    height: 50px;
+  }
+  .cuadros {
+    width: 95%;
+    height: 50px;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+.capas {
+  width: 64px;
+  height: 50px;
+  background-color: #00373b;
+  #select {
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-image: url(../../../assets/img/layers.svg);
+  }
+}

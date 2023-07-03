@@ -1,0 +1,34 @@
+.contenedor {
+  /* Viewport Width */
+  width: 100vw;
+  /* Viewport Height */
+  height: 100vh;
+  /* Establece el layout de Grid */
+  display: grid;
+  /* Espacio entre las áreas */
+  /* Establece las filas y columnas del layout */
+  grid-template-rows: 80px auto;
+  grid-template-columns: 64px auto;
+  /* Establece las áreas */
+  grid-template-areas:
+    "header header"
+    "menu contenido";
+
+  background-color: #000;
+}
+.header {
+  background-color: #00373b;
+  grid-area: header;
+  border-bottom: 1px solid #fff;
+}
+.sidebar {
+  background-color: #011112;
+  grid-area: menu;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.contenido {
+  background-color: #bc93f9;
+  grid-area: contenido;
+}
