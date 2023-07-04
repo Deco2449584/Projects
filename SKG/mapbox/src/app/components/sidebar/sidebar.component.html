@@ -1,6 +1,10 @@
 <div class="modulos">
   <div class="cuadros">
-    <div id="semaforo"></div>
+    <div
+      id="semaforo"
+      (mouseover)="hoverButtonEvent()"
+      (mouseleave)="hoverButtonEvent()"
+    ></div>
   </div>
   <div class="cuadros">
     <div id="ad"></div>
@@ -19,5 +23,5 @@
   </div>
 </div>
 <div class="capas">
-  <div id="select"></div>
+  <div (click)="showLayer('hola mundo')" id="select"></div>
 </div>

@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ParaderosComponent } from './components/capas/paraderos/paraderos.component';
 
 @NgModule({
-  declarations: [AppComponent, MapComponent, HeaderComponent, SidebarComponent],
+  declarations: [AppComponent, MapComponent, HeaderComponent, SidebarComponent, ParaderosComponent],
   imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
