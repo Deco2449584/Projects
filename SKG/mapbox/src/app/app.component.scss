@@ -100,7 +100,7 @@
 .bus {
   margin: 0;
   margin-left: 64px;
-  margin-top: 863px;
+  margin-top: 681px;
   position: absolute;
   z-index: 100;
   width: 64px;
@@ -114,6 +114,11 @@
     background-image: url(../assets/img/bus-stop.svg);
     background-repeat: no-repeat;
     cursor: pointer;
+    filter: brightness(1.2); /* Ajusta el brillo si deseas resaltar la imagen */
+    transition: filter 0.3s;
+  }
+  #bus:hover {
+    filter: brightness(1.5) drop-shadow(0 0 5px #00ff00);
   }
 }
 

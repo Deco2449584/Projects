@@ -5,6 +5,7 @@
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
+
   #psm {
     background-image: url(../../../assets/img/PMV.svg);
     background-repeat: no-repeat;
@@ -13,8 +14,11 @@
     width: 50px;
     cursor: pointer;
     height: 50px;
-    fill: #000; /* Color predeterminado */
-    transition: fill 0.3s ease;
+    filter: brightness(20); /* Ajusta el brillo si deseas resaltar la imagen */
+    transition: filter 0.3s;
+  }
+  #psm:hover {
+    filter: brightness(20) drop-shadow(0 0 10px #00ff00);
   }
   #aforo {
     background-image: url(../../../assets/img/Aforo.svg);
@@ -25,6 +29,11 @@
     width: 50px;
     cursor: pointer;
     height: 50px;
+    filter: brightness(2.2); /* Ajusta el brillo si deseas resaltar la imagen */
+    transition: filter 0.3s;
+  }
+  #aforo:hover {
+    filter: brightness(1.5) drop-shadow(0 0 5px #00ff00);
   }
 
   #clima {
@@ -36,6 +45,11 @@
     width: 50px;
     cursor: pointer;
     height: 50px;
+    filter: brightness(2.2); /* Ajusta el brillo si deseas resaltar la imagen */
+    transition: filter 0.3s;
+  }
+  #clima:hover {
+    filter: brightness(1.5) drop-shadow(0 0 5px #00ff00);
   }
   #police {
     background-image: url(../../../assets/img/Agentes.svg);
@@ -46,6 +60,11 @@
     width: 50px;
     cursor: pointer;
     height: 50px;
+    filter: brightness(2.2); /* Ajusta el brillo si deseas resaltar la imagen */
+    transition: filter 0.3s;
+  }
+  #police:hover {
+    filter: brightness(1.5) drop-shadow(0 0 5px #00ff00);
   }
   #ad {
     background-image: url(../../../assets/img/Incidentes.svg);
@@ -56,6 +75,11 @@
     width: 50px;
     cursor: pointer;
     height: 50px;
+    filter: brightness(2.2); /* Ajusta el brillo si deseas resaltar la imagen */
+    transition: filter 0.3s;
+  }
+  #ad:hover {
+    filter: brightness(1.5) drop-shadow(0 0 5px #00ff00);
   }
   #semaforo {
     background-image: url(../../../assets/img/Tráfico.svg);
@@ -66,6 +90,11 @@
     width: 50px;
     cursor: pointer;
     height: 50px;
+    filter: brightness(2.2); /* Ajusta el brillo si deseas resaltar la imagen */
+    transition: filter 0.3s;
+  }
+  #semaforo:hover {
+    filter: brightness(1.5) drop-shadow(0 0 5px #00ff00);
   }
   .cuadros {
     width: 95%;
@@ -73,9 +102,6 @@
     border-bottom: 1px solid #fff;
     color: #fff;
     cursor: pointer;
-  }
-  #psm:hover {
-    fill: rgb(8, 180, 28);
   }
 }
 .capas {
