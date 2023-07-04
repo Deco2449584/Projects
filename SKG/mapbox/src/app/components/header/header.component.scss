@@ -133,5 +133,11 @@ header {
       cursor: pointer;
       margin-top: 20px;
     }
+    #info:hover,
+    #task:hover,
+    #gear:hover,
+    #user:hover {
+      transform: translate(0, -2px); /* Mover hacia arriba 5px al hacer hover */
+    }
   }
 }

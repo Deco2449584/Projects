@@ -13,6 +13,8 @@
     width: 50px;
     cursor: pointer;
     height: 50px;
+    fill: #000; /* Color predeterminado */
+    transition: fill 0.3s ease;
   }
   #aforo {
     background-image: url(../../../assets/img/Aforo.svg);
@@ -72,6 +74,9 @@
     color: #fff;
     cursor: pointer;
   }
+  #psm:hover {
+    fill: rgb(8, 180, 28);
+  }
 }
 .capas {
   width: 64px;
@@ -80,6 +85,7 @@
   #select {
     width: 50px;
     height: 50px;
+    margin-left: 5px;
     background-repeat: no-repeat;
     cursor: pointer;
     background-image: url(../../../assets/img/layers.svg);

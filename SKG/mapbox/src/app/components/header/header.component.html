@@ -14,8 +14,9 @@
     <span>22</span>
   </div>
   <div class="configuraciones">
-    <span id="fecha">05/07/2022</span>
-    <span id="hora">08:10 am</span>
+    <span id="fecha">{{ fechaHoraInput | date : "dd/MM/yyyy" }}</span>
+
+    <span id="hora">{{ fechaHoraInput | date : "hh:mm a" }}</span>
   </div>
   <div class="secion">
     <div id="info"></div>
