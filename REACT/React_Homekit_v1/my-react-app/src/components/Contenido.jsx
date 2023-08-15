@@ -1,21 +1,46 @@
 import LightButton from "./LightButton";
-
+import "./Style/Contenido.css";
 const Contenido = () => {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: "20px",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <div className="contenido">
       <LightButton />
       <LightButton />
       <LightButton />
       <LightButton />
-      {/*... Añade más botones o contenido según lo requieras */}
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
     </div>
   );
 };

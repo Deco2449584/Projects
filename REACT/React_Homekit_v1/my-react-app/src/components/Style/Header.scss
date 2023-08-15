@@ -1,0 +1,19 @@
+.header {
+  background: rgba(128, 128, 128, 0.322);
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+
+  .sensor-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem; // Disminuye el tamaño de la fuente para asegurar que se ajuste al header
+
+    svg {
+      margin-right: 5px;
+      color: white; // Cambia el color del ícono a blanco para una mejor visibilidad contra el fondo gris
+    }
+  }
+}

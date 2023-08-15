@@ -1,0 +1,23 @@
+// Base de Colores
+$white: #ffffff;
+$black: #000000;
+$light-gray: #f1f3f5;
+$medium-gray: #d3d3d3;
+$dark-gray: #8c8c8c;
+
+// Colores Primarios
+$primary-color: $white; // Usado para el fondo principal y elementos destacados
+$primary-text-color: $black; // Color de texto principal contra un fondo claro
+
+// Colores Secundarios
+$secondary-color: $light-gray; // Usado para fondos de elementos y posiblemente headers o footers
+$secondary-text-color: $dark-gray; // Color de texto secundario o para íconos
+
+// Colores de Acento y Función
+$accent-color: #ffc107; // Un color dorado para elementos destacados o botones
+$error-color: #b00020; // Color para alertas o notificaciones de error
+$success-color: #34c759; // Un verde para acciones exitosas o confirmaciones
+
+// Colores de Fondo
+$background-color: $primary-color;
+$card-background-color: $secondary-color; // Color de fondo para tarjetas o modales

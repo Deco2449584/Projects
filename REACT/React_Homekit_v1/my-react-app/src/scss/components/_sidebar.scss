@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+$primary-color: #ffcc00; // Un amarillo brillante para los íconos principales
+$hover-color: #ffd633; // Un tono de amarillo ligeramente más claro para el hover de los íconos
+$hover-bg-color: #fff1d1; // Un amarillo muy claro, casi beige, para el fondo de hover
+$text-color: #1c1c1e; // Mantenemos el color del texto neutro para contraste
+$sidebar-bg-color: rgba(128, 128, 128, 0.192);
+// Un fondo ligeramente amarillento para el sidebar
+
+$sidebar-active-width: 180px;
+$sidebar-width: 25px;
+$sidebar-padding: 16px 16px;
+
+.sidebar {
+  font-family: "Roboto", "San Francisco", sans-serif;
+  background-color: $sidebar-bg-color;
+  grid-area: sidebar;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $sidebar-width;
+  padding: $sidebar-padding;
+  height: 100%;
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: width 0.3s ease-in-out;
+
+  .logo_content {
+    color: $text-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: $primary-color;
+      transition: color 0.3s ease;
+      margin-left: -8px; // Desplaza el botón hacia la izquierda
+
+      &:hover {
+        color: $hover-color;
+      }
+    }
+
+    .logo {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 16px;
+
+      .logo_icon {
+        font-size: 1.5rem;
+        color: $primary-color;
+        display: block;
+
+        .sidebar:not(.active) & {
+          display: none;
+        }
+      }
+
+      .logo_name {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  &.active {
+    width: $sidebar-active-width;
+  }
+
+  .nav {
+    list-style-type: none;
+    padding: 0;
+    gap: 16px;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 8px 0;
+      border-radius: 8px;
+      font-size: 1.5rem;
+
+      svg,
+      .link_name {
+        color: $primary-color;
+        transition: color 0.3s ease;
+      }
+
+      &:hover {
+        background-color: $hover-bg-color;
+
+        svg,
+        .link_name {
+          color: $hover-color; // Color hover para texto e ícono
+        }
+      }
+
+      .link_name {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+$off-bg-color: #e0e0e0;
+$on-bg-color: #fffbe6;
+$off-button-color: #d3d3d3;
+$on-button-color: #ffd700;
+$off-icon-color: white;
+$on-icon-color: black;
+$off-text-color: #b0b0b0;
+$on-text-color: #000000;
+
+.light-button {
+  width: 80px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, opacity 0.3s;
+  text-align: center;
+  background-color: $off-bg-color;
+  opacity: 0.6;
+  margin: 5px 5px 10px 5px;
+  cursor: pointer;
+
+  &.active {
+    background-color: $on-bg-color;
+    opacity: 1;
+  }
+
+  .button-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $off-button-color;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+
+    svg {
+      font-size: 30px;
+      color: $off-icon-color;
+    }
+  }
+
+  .button-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: $off-text-color;
+  }
+
+  .button-status {
+    font-size: 12px;
+    color: $off-text-color;
+  }
+
+  &.active {
+    .button-icon {
+      background-color: $on-button-color;
+
+      svg {
+        color: $on-icon-color;
+      }
+    }
+
+    .button-status {
+      color: $on-text-color;
+    }
+  }
+}

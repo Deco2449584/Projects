@@ -1,0 +1,5 @@
+.Footer {
+  background: gray;
+  opacity: 0.3;
+  grid-area: footer;
+}

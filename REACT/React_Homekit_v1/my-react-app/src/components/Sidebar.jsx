@@ -1,19 +1,14 @@
 import { useState } from "react";
+import "../scss/components/_sidebar.scss";
 import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  IconButton,
-  Typography,
-} from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import DesktopWindowsIcon from "@mui/icons-material/DesktopWindows";
-import BedIcon from "@mui/icons-material/Hotel";
-import BathtubIcon from "@mui/icons-material/Bathtub";
-import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import MoreIcon from "@mui/icons-material/More";
-import MenuIcon from "@mui/icons-material/Menu";
+  FaHome,
+  FaDesktop,
+  FaBed,
+  FaBath,
+  FaLightbulb,
+  FaEllipsisH,
+  FaBars,
+} from "react-icons/fa";
 
 const Sidebar = () => {
   const [active, setActive] = useState(false);
@@ -21,46 +16,28 @@ const Sidebar = () => {
   return (
     <div className={`sidebar ${active ? "active" : ""}`}>
       <div className="logo_content">
-        <HomeIcon />
-        <Typography variant="h6" className="logo_name">
-          Home
-        </Typography>
-        <IconButton onClick={() => setActive(!active)}>
-          <MenuIcon />
-        </IconButton>
+        <button onClick={() => setActive(!active)} aria-label="Toggle Sidebar">
+          <FaBars className="menu_icon" />
+        </button>
+        <div className="logo">
+          {active && <FaHome className="logo_icon" />}
+          {active && <span className="logo_name">Home</span>}
+        </div>
       </div>
-      <List className="nav">
-        <ListItem button>
-          <ListItemIcon>
-            <DesktopWindowsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Estudio" className="link_name" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <BedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Habitacion Principal" className="link_name" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <BathtubIcon />
-          </ListItemIcon>
-          <ListItemText primary="Baño" className="link_name" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <LightbulbIcon />
-          </ListItemIcon>
-          <ListItemText primary="Iluminacion" className="link_name" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <MoreIcon />
-          </ListItemIcon>
-          <ListItemText primary="Otros" className="link_name" />
-        </ListItem>
-      </List>
+      <ul className="nav">
+        {[
+          { icon: <FaDesktop />, name: "Estudio" },
+          { icon: <FaBed />, name: "Habitación" },
+          { icon: <FaBath />, name: "Baño" },
+          { icon: <FaLightbulb />, name: "Iluminación" },
+          { icon: <FaEllipsisH />, name: "Otros" },
+        ].map((item) => (
+          <li key={item.name}>
+            {item.icon}
+            {active && <span className="link_name">{item.name}</span>}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
