@@ -1,0 +1,25 @@
+// src/app/room-controls/light-control/light-control.component.scss
+
+.light-control-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &.on {
+    background-color: #ffcc00; // Color cuando la luz está encendida
+  }
+
+  &.off {
+    background-color: #cccccc; // Color cuando la luz está apagada
+  }
+
+  span {
+    font-size: 1.2rem;
+    color: white;
+  }
+}

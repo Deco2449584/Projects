@@ -1,0 +1,23 @@
+// src/app/layout/main-layout/main-layout.component.scss
+
+.app-header {
+  width: 100%;
+  padding: 1rem 0;
+  text-align: center;
+  background-color: #333;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.side-menu {
+  width: 250px;
+  height: 100vh;
+  background-color: #f7f7f7;
+  // Estilos adicionales según tus necesidades.
+}
+
+.content-area {
+  flex: 1;
+  padding: 2rem;
+  // Estilos adicionales para esta área.
+}

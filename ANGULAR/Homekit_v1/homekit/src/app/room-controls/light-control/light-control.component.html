@@ -1,0 +1,7 @@
+<!-- src/app/room-controls/light-control/light-control.component.html -->
+
+<div class="light-control-container">
+  <div (click)="toggleLight()" [class]="device.status">
+    <span>{{ device.name }}</span>
+  </div>
+</div>

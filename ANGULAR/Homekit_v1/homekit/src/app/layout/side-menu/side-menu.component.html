@@ -1,0 +1,15 @@
+<nav class="rooms-nav">
+  <ul>
+    <li *ngFor="let room of rooms">
+      <div (click)="toggleRoom(room.id)">
+        {{ room.name }}
+        <!-- Aquí puedes añadir un ícono para indicar si la habitación está desplegada o no -->
+      </div>
+
+      <!-- Contenido desplegable para cada habitación -->
+      <div *ngIf="isRoomVisible(room.id)" class="room-content">
+        <!-- Aquí irían los controles o información adicional para cada habitación -->
+      </div>
+    </li>
+  </ul>
+</nav>
