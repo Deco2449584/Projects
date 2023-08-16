@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+/* import { useEffect, useState } from "react";
 
 function MotionSensor() {
   const [motionDetected, setMotionDetected] = useState(false);
@@ -34,3 +34,4 @@ function MotionSensor() {
 }
 
 export default MotionSensor;
+ */

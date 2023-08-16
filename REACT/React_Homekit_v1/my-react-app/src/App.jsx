@@ -1,5 +1,7 @@
-// Importando las dependencias necesarias de React
+// Importando las dependencias necesarias de React y Redux
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { connected, disconnected, receivedData } from "./websocketSlice"; // Asumiendo que tienes el slice en el mismo directorio
 
 // Importando componentes internos que se usarán en este archivo
 import Sidebar from "./components/Sidebar";
@@ -22,8 +24,33 @@ const App = () => {
   // Estado para rastrear y configurar el fondo actual
   const [currentBackground, setCurrentBackground] = useState(0);
 
+  // Obtener el dispatch para lanzar acciones de Redux
+  const dispatch = useDispatch();
+
   // Efecto que se ejecutará una vez al montar el componente
   useEffect(() => {
+    // Estableciendo la conexión WebSocket
+    const ws = new WebSocket("ws://localhost:1880/ws/example");
+
+    // Evento que se ejecuta cuando la conexión es exitosa
+    ws.onopen = () => {
+      dispatch(connected());
+    };
+
+    // Evento que se ejecuta cuando la conexión se cierra
+    ws.onclose = () => {
+      dispatch(disconnected());
+    };
+
+    // Evento que se ejecuta cuando se recibe un mensaje del servidor WebSocket
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      // Imprimir en consola los datos recibidos
+      console.log("Datos recibidos:", data);
+
+      dispatch(receivedData(data));
+    };
+
     // Estableciendo un intervalo para cambiar el fondo
     const interval = setInterval(() => {
       // Aumentando la opacidad de la imagen siguiente
@@ -43,9 +70,12 @@ const App = () => {
       }, 5000); // Retardo de 5 segundos
     }, 15000); // Cambio de imagen cada 15 segundos
 
-    // Limpiando el intervalo cuando el componente se desmonte
-    return () => clearInterval(interval);
-  }, []); // El array de dependencias vacío asegura que useEffect se ejecute solo una vez
+    // Limpiando el intervalo y cerrando la conexión WebSocket cuando el componente se desmonte
+    return () => {
+      clearInterval(interval);
+      ws.close();
+    };
+  }, [dispatch]); // Agregamos dispatch al array de dependencias para evitar advertencias
 
   // Renderizando el JSX del componente
   return (
