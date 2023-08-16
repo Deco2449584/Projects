@@ -1,8 +1,21 @@
 import LightButton from "./LightButton";
-import "./Style/Contenido.css";
+import "../scss/components/Contenido.scss";
 const Contenido = () => {
   return (
     <div className="contenido">
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
+      <LightButton />
       <LightButton />
       <LightButton />
       <LightButton />

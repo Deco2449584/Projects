@@ -1,23 +1,18 @@
-// Base de Colores
-$white: #ffffff;
-$black: #000000;
-$light-gray: #f1f3f5;
-$medium-gray: #d3d3d3;
-$dark-gray: #8c8c8c;
+$primary-color: #000000; // Amarillo brillante de la paleta, para íconos y acentos principales
+$hover-color: #ffb700; // Un marrón claro con un toque de amarillo para el hover de los íconos
+$hover-bg-color: #fff9ec; // Un blanco roto para el fondo de hover
+$text-color: #1c1c1e; // Mantenemos el color del texto neutro para contraste
+$sidebar-bg-color: #fef9dc34; // Un color crema suave para el fondo del sidebar
 
-// Colores Primarios
-$primary-color: $white; // Usado para el fondo principal y elementos destacados
-$primary-text-color: $black; // Color de texto principal contra un fondo claro
+$sidebar-active-width: 180px;
+$sidebar-width: 25px;
+$sidebar-padding: 16px 16px;
 
-// Colores Secundarios
-$secondary-color: $light-gray; // Usado para fondos de elementos y posiblemente headers o footers
-$secondary-text-color: $dark-gray; // Color de texto secundario o para íconos
-
-// Colores de Acento y Función
-$accent-color: #ffc107; // Un color dorado para elementos destacados o botones
-$error-color: #b00020; // Color para alertas o notificaciones de error
-$success-color: #34c759; // Un verde para acciones exitosas o confirmaciones
-
-// Colores de Fondo
-$background-color: $primary-color;
-$card-background-color: $secondary-color; // Color de fondo para tarjetas o modales
+$off-bg-color: #e0e0e0;
+$on-bg-color: #fffbe6;
+$off-button-color: #d3d3d3;
+$on-button-color: #ffd700;
+$off-icon-color: white;
+$on-icon-color: black;
+$off-text-color: #b0b0b0;
+$on-text-color: #000000;

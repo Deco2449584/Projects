@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../scss/components/_sidebar.scss";
+import "../scss/components/Sidebar.scss";
 import {
   FaHome,
   FaDesktop,

@@ -1,4 +1,4 @@
-import "./Style/Header.scss";
+import "../scss/components/Header.scss";
 import {
   FaTemperatureHigh,
   FaWater,
