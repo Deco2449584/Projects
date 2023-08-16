@@ -4,56 +4,6 @@ const Contenido = () => {
   return (
     <div className="contenido">
       <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
-      <LightButton />
     </div>
   );
 };

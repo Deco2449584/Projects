@@ -1,33 +1,56 @@
+// Importa el archivo mixins para utilizarlo en este archivo
 @import "mixins";
 
+// Estilos para el contenedor principal
 .contenedor {
+  // Permite detectar gestos de pantalla táctil en direcciones específicas
   touch-action: pan-x pan-y;
+
+  // Elimina márgenes y rellenos predeterminados
   margin: 0;
   padding: 0;
+
+  // Establece el ancho y alto al 100%
   width: 100%;
   height: 100%;
+
+  // Configura una cuadrícula CSS
   display: grid;
+
+  // Define dos filas para la cuadrícula
   grid-template-rows: 40px auto;
+
+  // Propiedades de fondo para el contenedor
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
 
+  // Estilos para la imagen de fondo
   .background-image {
+    // Coloca el fondo en la parte superior izquierda del contenedor
     position: absolute;
     top: 0;
     left: 0;
+
+    // Establece la imagen de fondo para ocupar todo el espacio
     width: 100%;
     height: 100%;
+
+    // Establece el tamaño y la posición de la imagen de fondo
     background-size: cover;
     background-position: center;
-    transition: opacity 2s ease-in-out; // Tiempo de transición ajustado a 2 segundos
 
+    // Transición para la opacidad de la imagen de fondo (2 segundos)
+    transition: opacity 2s ease-in-out;
+
+    // Estilos para la imagen de fondo que aparecerá a continuación
     &.next {
-      opacity: 0;
-      z-index: -1;
+      opacity: 0; // Opacidad inicial 0 (invisible)
+      z-index: -1; // La coloca detrás de la imagen principal
     }
   }
+
+  // Estilos adaptativos para teléfonos móviles
   @include respond(phone) {
     grid-template-columns: 0fr 1fr;
     grid-template-areas:
@@ -35,6 +58,7 @@
       "sidebar contenido";
   }
 
+  // Estilos adaptativos para tablets en modo retrato
   @include respond(tablet-portrait) {
     grid-template-columns: 0fr 3fr;
     grid-template-areas:
@@ -42,6 +66,7 @@
       "sidebar contenido";
   }
 
+  // Estilos adaptativos para tablets en modo paisaje
   @include respond(tablet-landscape) {
     grid-template-columns: 0fr 2.5fr;
     grid-template-areas:
@@ -49,6 +74,7 @@
       "sidebar contenido";
   }
 
+  // Estilos adaptativos para escritorio
   @include respond(desktop) {
     grid-template-columns: 0fr 2fr;
     grid-template-areas:
