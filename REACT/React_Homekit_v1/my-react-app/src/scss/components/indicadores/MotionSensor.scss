@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import "../../variables";
+
+.motion-sensor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif; // Usamos la fuente Roboto
+  cursor: pointer; // Efecto de mano al pasar el ratón
+  transition: all 0.3s ease;
+
+  // Sombras y estilos base
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  p {
+    margin-left: 10px;
+    font-weight: 700; // Letra en negrita
+    color: $text-color; // Color oscuro para el texto
+  }
+  svg {
+    // Estilos para el ícono
+    font-size: 1.5rem;
+    color: $indicadores_off;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  &.active svg {
+    color: $indicadores_on;
+    transform: scale(1.2) rotate(10deg); // Aumentamos un poco y rotamos el ícono
+  }
+}

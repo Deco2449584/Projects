@@ -1,37 +1,26 @@
-/* import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { selectData } from "../../websocketSlice";
+import { FaWalking } from "react-icons/fa"; // Asegúrate de tener esta importación para el icono
+import "../../scss/components/indicadores/MotionSensor.scss";
 
-function MotionSensor() {
-  const [motionDetected, setMotionDetected] = useState(false);
+const MotionSensor = ({ id }) => {
+  const sensorData = useSelector(selectData);
+  console.log("sensorData:", sensorData);
+  const motionStatus = sensorData && sensorData[id];
 
-  useEffect(() => {
-    const ws = new WebSocket("ws://localhost:1880");
-
-    ws.onopen = () => {
-      console.log("Conectado al servidor WebSocket");
-    };
-
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.type === "motion") {
-        setMotionDetected(data.value);
-      }
-    };
-
-    ws.onclose = () => {
-      console.log("Desconectado del servidor WebSocket");
-    };
-
-    // Limpieza: cerrar el socket cuando el componente se desmonte
-    return () => ws.close();
-  }, []);
+  console.log(`motionStatus for ${id}:`, motionStatus);
 
   return (
-    <div>
-      <span>Movimiento:</span>
-      <span>{motionDetected ? "Detectado" : "No detectado"}</span>
+    <div className={`motion-sensor ${motionStatus ? "active" : ""}`}>
+      <FaWalking size={30} />
+      <p>{id}</p>
     </div>
   );
-}
+};
+
+MotionSensor.propTypes = {
+  id: PropTypes.string.isRequired,
+};
 
 export default MotionSensor;
- */

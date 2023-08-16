@@ -46,7 +46,7 @@ const App = () => {
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       // Imprimir en consola los datos recibidos
-      console.log("Datos recibidos:", data);
+      console.log("Datos parseados:", data);
 
       dispatch(receivedData(data));
     };
