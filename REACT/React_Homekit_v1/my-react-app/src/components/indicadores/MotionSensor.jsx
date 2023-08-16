@@ -6,10 +6,10 @@ import "../../scss/components/indicadores/MotionSensor.scss";
 
 const MotionSensor = ({ id }) => {
   const sensorData = useSelector(selectData);
-  console.log("sensorData:", sensorData);
+  //console.log("sensorData:", sensorData);
   const motionStatus = sensorData && sensorData[id];
 
-  console.log(`motionStatus for ${id}:`, motionStatus);
+  //console.log(`motionStatus for ${id}:`, motionStatus);
 
   return (
     <div className={`motion-sensor ${motionStatus ? "active" : ""}`}>

@@ -29,7 +29,7 @@ export const websocketSlice = createSlice({
     // Recibe datos del websocket y los almacena en el estado
     receivedData: (state, action) => {
       const { id, status } = action.payload;
-      console.log("Data en reducer:", id, status); // Añade esta línea
+      // console.log("Data en reducer:", id, status); // Añade esta línea
       state.data[id] = status;
     },
   },
