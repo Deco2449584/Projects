@@ -1,20 +1,13 @@
-// Variables
-$off-bg-color: #e0e0e0;
-$on-bg-color: #fffbe6;
-$off-button-color: #d3d3d3;
-$on-button-color: #ffd700;
-$off-icon-color: white;
-$on-icon-color: black;
-$off-text-color: #000000;
-$on-text-color: #ffffff;
+@import "../variables";
 
 .wled-button {
   width: 100px;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, opacity 0.3s;
   text-align: center;
-  background-color: $off-button-color;
+  background-color: $off-bg-color;
   opacity: 0.9;
   margin: 5px 5px 10px 5px;
   cursor: pointer;
@@ -22,9 +15,11 @@ $on-text-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: $off-text-color;
 
+  &.active {
+    background-color: $on-bg-color;
+    opacity: 1;
+  }
   .light-status {
     width: 70px;
     height: 70px;
@@ -33,18 +28,24 @@ $on-text-color: #ffffff;
     align-items: center;
     justify-content: center;
     background-color: $off-button-color;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
 
     svg {
-      font-size: 50px;
+      font-size: 30px;
       color: $off-icon-color;
     }
   }
+  .button-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: $off-text-color;
+  }
 
-  &.active .light-status {
-    background-color: $on-button-color;
-    svg {
-      color: $on-icon-color;
-    }
+  .button-status {
+    font-size: 12px;
+    color: $off-text-color;
   }
 }
 
@@ -55,17 +56,16 @@ $on-text-color: #ffffff;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
 
   .wled-modal-content {
     position: relative;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: $off-bg-color;
     border-radius: 15px;
     padding: 20px;
-    max-width: 300px; // Asegurarse de que no se expanda más de lo deseado
+    max-width: 280px; // Asegurarse de que no se expanda más de lo deseado
     width: 90%; // Se adapta al ancho del dispositivo, pero hasta un máximo de 300px
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
@@ -74,7 +74,7 @@ $on-text-color: #ffffff;
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 30px;
+    font-size: 35px;
     cursor: pointer;
     color: $off-text-color;
   }
@@ -100,6 +100,7 @@ $on-text-color: #ffffff;
     margin-top: 20px;
     margin-bottom: 20px;
     cursor: pointer;
+    border: 1px solid $off-text-color;
 
     &.active {
       background-color: $on-button-color;
@@ -108,10 +109,26 @@ $on-text-color: #ffffff;
   }
 
   .brightness-slider {
-    width: 100%;
+    width: 80%;
 
     input {
       width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  .wled-button {
+    width: 70px;
+    height: 70px;
+    .light-status {
+      width: 40px;
+    }
+    .button-label {
+      font-size: 10px;
+    }
+    .button-status {
+      font-size: 10px;
     }
   }
 }

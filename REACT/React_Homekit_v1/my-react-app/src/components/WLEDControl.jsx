@@ -47,7 +47,7 @@ function WLEDControl() {
   const handlePowerToggle = async () => {
     setIsOn((prevIsOn) => !prevIsOn);
     try {
-      const url = `${wledIP}/win&T=${isOn ? 1 : 0}`;
+      const url = `${wledIP}/win&T=${isOn ? 0 : 1}`;
       console.log("Sending power toggle request to:", url);
 
       const response = await fetch(url);
@@ -85,19 +85,22 @@ function WLEDControl() {
   }, [isModalOpen]);
   // Renderizamos los elementos de la interfaz del componente.
   return (
-    <div className="wled-button" onClick={() => setIsModalOpen(true)}>
+    <div
+      className={`wled-button ${isOn ? "active" : ""}`}
+      onClick={() => setIsModalOpen(true)}
+    >
       <div
         className={`light-status ${isOn ? "active" : ""}`}
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: isOn ? color : "#e0e0e0" }} // Agregar condicional aquí
       >
-        <MdLightbulbOutline size={50} />
+        <MdLightbulbOutline />
       </div>
-      <span>WLED</span>
+      <div className="button-label">Wled</div>
+      <div className="button-status">{isOn ? "Encendido" : "Apagado"}</div>
 
       {isModalOpen && (
         <div className="wled-modal">
           <div className="wled-modal-content">
-            {/* Icono de cierre */}
             <MdClose
               className="close-icon"
               onClick={(event) => {
@@ -110,7 +113,11 @@ function WLEDControl() {
 
             {/* Control combinado de encendido/apagado y brillo */}
             <div className="power-brightness-control">
-              <button className="power-button" onClick={handlePowerToggle}>
+              <button
+                className={`power-button ${isOn ? "active" : ""}`}
+                style={{ backgroundColor: isOn ? color : "#d3d3d3" }}
+                onClick={handlePowerToggle}
+              >
                 {isOn ? "ON" : "OFF"}
               </button>
               <div className="brightness-slider">
