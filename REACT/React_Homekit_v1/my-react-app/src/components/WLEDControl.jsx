@@ -7,10 +7,12 @@ import { CirclePicker } from "react-color";
 // Importamos los estilos específicos para este componente.
 import "../scss/components/wled.scss";
 // Definimos el componente funcional WLEDControl.
+import { MdClose } from "react-icons/md";
+
 function WLEDControl() {
   // Establecemos el estado inicial del color, brillo y estado (encendido/apagado) usando el hook useState.
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [color, setColor] = useState("#FF0000");
+  const [color, setColor] = useState("gray");
   const [brightness, setBrightness] = useState(255);
   const [isOn, setIsOn] = useState(true);
 
@@ -84,35 +86,43 @@ function WLEDControl() {
   // Renderizamos los elementos de la interfaz del componente.
   return (
     <div className="wled-button" onClick={() => setIsModalOpen(true)}>
-      <MdLightbulbOutline size={30} />
+      <div
+        className={`light-status ${isOn ? "active" : ""}`}
+        style={{ backgroundColor: color }}
+      >
+        <MdLightbulbOutline size={50} />
+      </div>
       <span>WLED</span>
 
       {isModalOpen && (
         <div className="wled-modal">
           <div className="wled-modal-content">
-            <button
-              onClick={() => {
+            {/* Icono de cierre */}
+            <MdClose
+              className="close-icon"
+              onClick={(event) => {
                 setIsModalOpen(false);
-                console.log("Clic en cerrar");
-                console.log("Valor de isModalOpen:", isModalOpen);
+                event.stopPropagation(); // Prevenimos que se propague el evento al div padre
               }}
-            >
-              Cerrar
-            </button>
-
-            {/* Aquí está el botón de encendido/apagado */}
-            <button onClick={handlePowerToggle}>
-              {isOn ? "Apagar" : "Encender"}
-            </button>
+            />
 
             <CirclePicker color={color} onChangeComplete={handleColorChange} />
-            <input
-              type="range"
-              min="0"
-              max="255"
-              value={brightness}
-              onChange={handleBrightnessChange}
-            />
+
+            {/* Control combinado de encendido/apagado y brillo */}
+            <div className="power-brightness-control">
+              <button className="power-button" onClick={handlePowerToggle}>
+                {isOn ? "ON" : "OFF"}
+              </button>
+              <div className="brightness-slider">
+                <input
+                  type="range"
+                  min="0"
+                  max="255"
+                  value={brightness}
+                  onChange={handleBrightnessChange}
+                />
+              </div>
+            </div>
           </div>
         </div>
       )}
