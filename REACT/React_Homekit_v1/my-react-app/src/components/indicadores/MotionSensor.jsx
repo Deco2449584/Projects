@@ -1,3 +1,4 @@
+//motionsensor.jsx
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { selectData } from "../../websocketSlice";

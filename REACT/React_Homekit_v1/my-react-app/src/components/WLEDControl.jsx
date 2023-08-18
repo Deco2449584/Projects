@@ -1,5 +1,6 @@
+//wledcontrol.jsx
 // Importamos el hook useState de la librería React para gestionar el estado local del componente.
-import { useState, useEffect } from "react";
+import { useState } from "react";
 // Vamos a usar un ícono de bombilla para representar WLED.
 import { MdLightbulbOutline } from "react-icons/md";
 // Importamos CirclePicker, un componente de la librería react-color para seleccionar colores.
@@ -80,9 +81,7 @@ function WLEDControl() {
       console.error("Error:", error);
     }
   };
-  useEffect(() => {
-    console.log("Valor de isModalOpen:", isModalOpen);
-  }, [isModalOpen]);
+
   // Renderizamos los elementos de la interfaz del componente.
   return (
     <div

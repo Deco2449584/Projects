@@ -4,7 +4,8 @@ import WLEDControl from "./WLEDControl";
 const Contenido = () => {
   return (
     <div className="contenido">
-      <LightButton />
+      <LightButton id="luz1" />
+      <LightButton id="luz2" />
       <WLEDControl />
     </div>
   );

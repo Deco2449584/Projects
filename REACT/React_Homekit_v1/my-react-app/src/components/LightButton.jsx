@@ -1,3 +1,4 @@
+//ligthbutton.jsx
 import { useState } from "react";
 import { MdHighlight } from "react-icons/md"; // Importando el ícono desde react-icons
 import "../scss/components/LightButton.scss";
