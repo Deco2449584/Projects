@@ -2,12 +2,16 @@
 // Importando las dependencias necesarias de React y Redux
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { connected, disconnected, updateDataToAPI } from "./websocketSlice"; // Asumiendo que tienes el slice en el mismo directorio
-import { loadDataFromAPI } from "./websocketSlice"; // Importamos la función de acción que acabamos de crear
+import {
+  connected,
+  disconnected,
+  updateDataToAPI,
+} from "./redux/websocketSlice"; // Asumiendo que tienes el slice en el mismo directorio
+import { loadDataFromAPI } from "./redux/websocketSlice"; // Importamos la función de acción que acabamos de crear
 
 // Importando componentes internos que se usarán en este archivo
 import Sidebar from "./components/Sidebar";
-import Contenido from "./components/Contenido";
+import Content from "./components/Content";
 import Header from "./components/Header";
 
 // Importando los estilos para la App
@@ -99,7 +103,7 @@ const App = () => {
       {/* Componentes del encabezado, barra lateral y contenido */}
       <Header />
       <Sidebar />
-      <Contenido />
+      <Content />
     </div>
   );
 };

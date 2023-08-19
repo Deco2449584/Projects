@@ -1,0 +1,9 @@
+{
+  "devices": {
+    "motion1": false,
+    "motion2": false,
+    "motion3": false,
+    "motion4": true,
+    "luz1": true
+  }
+}
