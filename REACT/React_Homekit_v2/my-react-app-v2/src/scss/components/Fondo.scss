@@ -1,0 +1,20 @@
+// Estilos para la imagen de fondo
+.background-image {
+  // Coloca el fondo en la parte superior izquierda del contenedor
+  position: absolute;
+  top: 0;
+  left: 0;
+  // Establece la imagen de fondo para ocupar todo el espacio
+  width: 100%;
+  height: 100%;
+  // Establece el tamaño y la posición de la imagen de fondo
+  background-size: cover;
+  background-position: center;
+  // Transición para la opacidad de la imagen de fondo (2 segundos)
+  transition: opacity 2s ease-in-out;
+  // Estilos para la imagen de fondo que aparecerá a continuación
+  &.next {
+    opacity: 0; // Opacidad inicial 0 (invisible)
+    z-index: -1; // La coloca detrás de la imagen principal
+  }
+}

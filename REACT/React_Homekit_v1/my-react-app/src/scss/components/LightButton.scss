@@ -1,17 +1,20 @@
 @import "../variables";
 
 .light-button {
-  width: 80px;
+  width: 100px;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, opacity 0.3s;
   text-align: center;
   background-color: $off-bg-color;
-  opacity: 0.6;
+  opacity: 0.9;
   margin: 5px 5px 10px 5px;
   cursor: pointer;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &.active {
     background-color: $on-bg-color;
@@ -58,6 +61,21 @@
 
     .button-status {
       color: $on-text-color;
+    }
+  }
+}
+@media only screen and (max-width: 769px) {
+  .light-button {
+    width: 70px;
+    height: 70px;
+    .button-icon {
+      width: 40px;
+    }
+    .button-label {
+      font-size: 10px;
+    }
+    .button-status {
+      font-size: 10px;
     }
   }
 }

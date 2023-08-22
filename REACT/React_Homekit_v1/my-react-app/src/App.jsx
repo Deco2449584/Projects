@@ -1,11 +1,17 @@
+//app.jsx
 // Importando las dependencias necesarias de React y Redux
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { connected, disconnected, receivedData } from "./websocketSlice"; // Asumiendo que tienes el slice en el mismo directorio
+import {
+  connected,
+  disconnected,
+  updateDataToAPI,
+} from "./redux/websocketSlice"; // Asumiendo que tienes el slice en el mismo directorio
+import { loadDataFromAPI } from "./redux/websocketSlice"; // Importamos la función de acción que acabamos de crear
 
 // Importando componentes internos que se usarán en este archivo
 import Sidebar from "./components/Sidebar";
-import Contenido from "./components/Contenido";
+import Content from "./components/Content";
 import Header from "./components/Header";
 
 // Importando los estilos para la App
@@ -30,11 +36,16 @@ const App = () => {
   // Efecto que se ejecutará una vez al montar el componente
   useEffect(() => {
     // Estableciendo la conexión WebSocket
+<<<<<<< HEAD
     const ws = new WebSocket("ws://192.168.40.32:1880/ws/example");
+=======
+    const ws = new WebSocket("ws://192.168.10.33:1880/ws/example");
+>>>>>>> 063c6f099ea126724be6c66f94afe48befec49de
 
     // Evento que se ejecuta cuando la conexión es exitosa
     ws.onopen = () => {
       dispatch(connected());
+      dispatch(loadDataFromAPI()); // Añadir esta línea aquí
     };
 
     // Evento que se ejecuta cuando la conexión se cierra
@@ -45,12 +56,9 @@ const App = () => {
     // Evento que se ejecuta cuando se recibe un mensaje del servidor WebSocket
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      // Imprimir en consola los datos recibidos
-      // console.log("Datos parseados:", data);
-
-      dispatch(receivedData(data));
+      // Primero actualizamos el servidor con los datos recibidos
+      dispatch(updateDataToAPI(data.id, data.status));
     };
-
     // Estableciendo un intervalo para cambiar el fondo
     const interval = setInterval(() => {
       // Aumentando la opacidad de la imagen siguiente
@@ -99,7 +107,7 @@ const App = () => {
       {/* Componentes del encabezado, barra lateral y contenido */}
       <Header />
       <Sidebar />
-      <Contenido />
+      <Content />
     </div>
   );
 };

@@ -1,6 +1,7 @@
+//motionsensor.jsx
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import { selectData } from "../../websocketSlice";
+import { selectData } from "../../redux/websocketSlice";
 import { FaWalking } from "react-icons/fa"; // Asegúrate de tener esta importación para el icono
 import "../../scss/components/indicadores/MotionSensor.scss";
 

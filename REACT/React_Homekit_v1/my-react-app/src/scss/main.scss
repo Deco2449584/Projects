@@ -1,4 +1,18 @@
 body {
-  margin: 0;
-  padding: 0;
+  font-family: "Arial", sans-serif; // Establece una fuente predeterminada para el cuerpo
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%; // Asegura que las imágenes no excedan el ancho del contenedor padre
+  display: block; // Elimina el espacio adicional que podría aparecer debajo de la imagen
 }

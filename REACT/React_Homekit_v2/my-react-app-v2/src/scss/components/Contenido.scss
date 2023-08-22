@@ -1,0 +1,23 @@
+.contenido {
+  width: 90%;
+  height: 100%;
+  background: transparent;
+  grid-area: contenido;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: flex-start;
+  justify-content: flex-start;
+}
+@media only screen and (min-width: 769px) {
+  .contenido {
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+}
+@media only screen and (max-width: 769px) {
+  .contenido {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}

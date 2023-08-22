@@ -1,0 +1,26 @@
+@import "../../variables";
+
+@media only screen and (min-width: 769px) {
+  .header {
+    background: $header-bg-color;
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-radius: 10px;
+    z-index: 1000;
+  }
+}
+@media only screen and (max-width: 769px) {
+  .header {
+    background: $header-bg-color;
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-radius: 10px;
+    z-index: 1000;
+  }
+}

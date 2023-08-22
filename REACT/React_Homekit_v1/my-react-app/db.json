@@ -1,0 +1,23 @@
+{
+  "lightButton": {
+    "luz1": {
+      "status": false
+    },
+    "luz2": {
+      "status": false
+    }
+  },
+  "motionSensor": {
+    "motion1": true,
+    "motion2": false,
+    "motion3": false,
+    "motion4": true,
+    "luz2": true,
+    "luz1": true
+  },
+  "wledControl": {
+    "isOn": true,
+    "color": "#FFFFFF",
+    "brightness": 255
+  }
+}
