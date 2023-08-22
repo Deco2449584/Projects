@@ -1,61 +1,66 @@
-//app.jsx
-// Importando las dependencias necesarias de React y Redux
+// app.jsx
+// Dependencias
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { connected, disconnected, updateDataToAPI } from "./websocketSlice"; // Asumiendo que tienes el slice en el mismo directorio
-import { loadDataFromAPI } from "./websocketSlice"; // Importamos la función de acción que acabamos de crear
+import {
+  connected,
+  disconnected,
+  updateDataToAPI,
+  loadDataFromAPI,
+} from "./websocketSlice";
 
-// Importando componentes internos que se usarán en este archivo
-/* import Sidebar from "./components/Sidebar";
- */ import Contenido from "./components/Contenido";
+// Componentes
+import Sidebar from "./components/Sidebar";
+import Contenido from "./components/Contenido";
 import Header from "./components/Header";
 import Fondo from "./components/Pruebas/Fondo";
 
-// Importando los estilos para la App
+// Estilos
 import "./scss/App.scss";
-// Definiendo el componente App
+
+/**
+ * Componente principal de la aplicación.
+ * Este componente gestiona la conexión WebSocket y renderiza los componentes principales de la interfaz.
+ */
 const App = () => {
-  // Obtener el dispatch para lanzar acciones de Redux
+  // Hook de Redux para dispatch
   const dispatch = useDispatch();
 
-  // Efecto que se ejecutará una vez al montar el componente
   useEffect(() => {
-    // Estableciendo la conexión WebSocket
+    // Iniciar conexión WebSocket
     const ws = new WebSocket("ws://192.168.10.33:1880/ws/example");
 
-    // Evento que se ejecuta cuando la conexión es exitosa
+    // En conexión exitosa, marca el estado como conectado y carga datos iniciales
     ws.onopen = () => {
       dispatch(connected());
-      dispatch(loadDataFromAPI()); // Añadir esta línea aquí
+      dispatch(loadDataFromAPI());
     };
 
-    // Evento que se ejecuta cuando la conexión se cierra
+    // En desconexión, marca el estado como desconectado
     ws.onclose = () => {
       dispatch(disconnected());
     };
 
-    // Evento que se ejecuta cuando se recibe un mensaje del servidor WebSocket
+    // Al recibir un mensaje del servidor, actualiza los datos en el servidor
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      // Primero actualizamos el servidor con los datos recibidos
       dispatch(updateDataToAPI(data.id, data.status));
     };
 
+    // Cerrar conexión WebSocket en desmontaje
     return () => {
       ws.close();
     };
-  }, [dispatch]); // Agregamos dispatch al array de dependencias para evitar advertencias
+  }, [dispatch]);
 
-  // Renderizando el JSX del componente
   return (
     <div className="container">
-      {/* Componentes del encabezado, barra lateral y contenido */}
       <Header />
       <Contenido />
       <Fondo />
+      <Sidebar />
     </div>
   );
 };
 
-// Exportando el componente App para ser utilizado en otros lugares
 export default App;

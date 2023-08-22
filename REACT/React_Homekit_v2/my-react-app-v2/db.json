@@ -3,7 +3,7 @@
     "motion1": false,
     "motion2": false,
     "motion3": false,
-    "motion4": true,
+    "motion4": false,
     "luz1": true
   }
 }

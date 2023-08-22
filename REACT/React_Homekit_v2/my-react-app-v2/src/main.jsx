@@ -28,8 +28,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/*     // El componente Provider envuelve a la aplicación, permitiendo que todos los componentes hijos accedan al store de Redux.
      */}{" "}
     <Provider store={store}>
-      {/*       // Renderizamos el componente principal App.
-       */}{" "}
       <App />
     </Provider>
   </React.StrictMode>
