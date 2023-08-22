@@ -21,7 +21,7 @@ const Sidebar = () => {
         </button>
         <div className="logo">
           {active && <FaHome className="logo_icon" />}
-          {active && <span className="logo_name">Home</span>}
+          {active && <span className="logo_name">Inicio</span>}
         </div>
       </div>
       <ul className="nav">
@@ -29,8 +29,8 @@ const Sidebar = () => {
           { icon: <FaDesktop />, name: "Estudio" },
           { icon: <FaBed />, name: "Habitación" },
           { icon: <FaBath />, name: "Baño" },
-          { icon: <FaLightbulb />, name: "Iluminación" },
-          { icon: <FaEllipsisH />, name: "Otros" },
+          { icon: <FaLightbulb />, name: "Alcoba" },
+          { icon: <FaEllipsisH />, name: "Patio" },
         ].map((item) => (
           <li key={item.name}>
             {item.icon}
