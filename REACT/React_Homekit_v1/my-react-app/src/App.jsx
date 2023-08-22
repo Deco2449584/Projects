@@ -30,7 +30,7 @@ const App = () => {
   // Efecto que se ejecutará una vez al montar el componente
   useEffect(() => {
     // Estableciendo la conexión WebSocket
-    const ws = new WebSocket("ws://localhost:1880/ws/example");
+    const ws = new WebSocket("ws://192.168.40.32:1880/ws/example");
 
     // Evento que se ejecuta cuando la conexión es exitosa
     ws.onopen = () => {
