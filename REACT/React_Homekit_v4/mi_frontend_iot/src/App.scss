@@ -1,0 +1,34 @@
+.device-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; // espacio entre dispositivos
+  margin: 20px 0;
+  padding: 0 15px;
+
+  .device {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #e9e9e9;
+    }
+
+    .device-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      p {
+        margin: 0;
+
+        strong {
+          margin-right: 10px;
+          color: #dd0d0d;
+        }
+      }
+    }
+  }
+}
