@@ -10,19 +10,19 @@ const db = require("./database");
 client.on("connect", function () {
   console.log("Escuhando al broker MQTT");
   // Suscríbete a un tópico en particular.
-  client.subscribe("sensor/temperatura");
-  client.subscribe("dispositivo/luz");
-  client.subscribe("dispositivo/interruptor");
+  client.subscribe("motion");
+  client.subscribe("ligth");
 });
 
 // Escucha el evento "message" para recibir mensajes del broker MQTT.
 client.on("message", function (topic, message) {
   console.log(`Recibido del tópico "${topic}": ${message.toString()}`);
   const data = JSON.parse(message.toString());
+
   const stmt = db.prepare(
-    "INSERT INTO devices (id, type, status) VALUES (?, ?, ?)"
+    "INSERT INTO devices (id, type, status, value) VALUES (?, ?, ?, ?)"
   );
-  stmt.run(data.id, data.type, data.status.toString());
+  stmt.run(data.id, data.type, data.status.toString(), data.value || null);
   stmt.finalize();
 });
 

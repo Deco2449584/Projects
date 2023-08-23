@@ -1,43 +1,34 @@
-//app.jsx
-import { useState, useEffect } from "react";
-import io from "socket.io-client";
+//App.jsx
+import useDevices from "./services/useDevices";
+import Sensor from "./components/Sensor"; // Importa el componente Sensor
+/* import LightToggle from "./components/LightToggle"; // Importa el componente ligth
+ */
 import "./App.scss";
 
 function App() {
-  const [devices, setDevices] = useState([]);
-
-  useEffect(() => {
-    // Obtener datos de la base de datos al cargar la página.
-    fetch("http://localhost:3000/devices")
-      .then((response) => response.json())
-      .then((data) => {
-        setDevices(data.devices);
-      })
-      .catch((error) => {
-        console.error("Error fetching devices:", error);
-      });
-
-    const socket = io("http://localhost:3000");
-
-    socket.on("mqtt", (data) => {
-      setDevices((prevDevices) => [...prevDevices, data]);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+  const devices = useDevices();
 
   return (
     <div className="App">
       <h1>Dispositivos IoT</h1>
       <div className="device-list">
-        {devices.map((device, index) => (
-          <li key={index}>
-            ID: {device.id}, Tipo: {device.type}, Estado:{" "}
-            {device.status.toString()}
-          </li>
-        ))}
+        {devices.map((device) => {
+          switch (device.type) {
+            case "motion":
+              return (
+                <Sensor
+                  key={device.id}
+                  id={device.id}
+                  type={device.type}
+                  status={device.status}
+                  value={device.value} // ¡Añadir esta línea!
+                />
+              );
+
+            default:
+              return null;
+          }
+        })}
       </div>
     </div>
   );
