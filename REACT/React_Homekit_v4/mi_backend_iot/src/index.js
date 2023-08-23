@@ -1,63 +1,91 @@
 // index.js
 
 // Importa las bibliotecas necesarias para el servidor.
-const express = require("express");
-const http = require("http");
-const socketIo = require("socket.io");
-const mqttClient = require("./mqtt");
-const db = require("./database");
-const cors = require("cors");
+import express from "express";
+import http from "http";
+import * as socketIo from "socket.io";
+import cors from "cors";
+import mqttClient from "./mqtt.js";
+import db from "./database.js";
 
-// Crea una nueva instancia de Express.
 const app = express();
-
-// Crea un servidor HTTP basado en Express.
 const server = http.createServer(app);
 
-// Configura socket.io para trabajar con el servidor HTTP y aceptar conexiones CORS.
-const io = socketIo(server, {
+// Configuración de Socket.io
+const io = new socketIo.Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://localhost:5500",
+    ],
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
   },
 });
 
-// Escucha los mensajes que llegan del broker MQTT.
-mqttClient.on("message", function (topic, message) {
-  // Parsea el mensaje como JSON
-  const parsedMessage = JSON.parse(message.toString());
-  // Emite el mensaje a los clientes conectados a través de socket.io.
-  io.emit("mqtt", parsedMessage);
-  // Puedes almacenar el mensaje en la base de datos aquí.
+// Función para procesar y guardar el mensaje en la base de datos
+function processAndSaveMessage(data) {
+  try {
+    const stmt = db.prepare(
+      "INSERT INTO devices (id, type, status, value) VALUES (?, ?, ?, ?)"
+    );
+    stmt.run(data.id, data.type, data.status, data.value || null);
+    stmt.finalize();
+  } catch (error) {
+    console.error("Error al procesar y guardar el mensaje:", error);
+  }
+}
+
+// Manejador de mensajes recibidos desde el broker MQTT
+mqttClient.on("message", (topic, message) => {
+  console.log(`Recibido del broker MQTT desde el tópico "${topic}"`);
+  try {
+    const parsedMessage = JSON.parse(message.toString());
+    processAndSaveMessage(parsedMessage); // Guarda en DB
+    io.emit("mqtt", parsedMessage); // Emite a los clientes
+  } catch (error) {
+    console.error("Error al procesar el mensaje:", error);
+  }
 });
 
-// Configura CORS (Cross-Origin Resource Sharing) para permitir la conexión desde los frontends especificados.
+// Manejador para recibir mensajes desde el frontend y enviarlos al broker MQTT
+io.on("connection", (socket) => {
+  socket.on("sendToMqtt", (data) => {
+    console.log("Mensaje recibido desde el frontend");
+    if (data.type) {
+      mqttClient.publish(data.type, JSON.stringify(data)); // Publica al broker MQTT
+      io.emit("mqtt", data); // Emite a los clientes
+    } else {
+      console.error("Datos incorrectos recibidos desde el frontend");
+    }
+  });
+});
 const corsOptions = {
-  origin: ["http://localhost:5173", "http://localhost:5174"],
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://localhost:5500",
+  ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
 };
-
+// Configuración de CORS
 app.use(cors(corsOptions));
 
-// Define una ruta API para consultar todos los dispositivos y sus datos.
+// Endpoint para obtener todos los dispositivos y sus datos
 app.get("/devices", (req, res) => {
-  // Consulta la base de datos.
   db.all("SELECT * FROM devices", [], (err, rows) => {
     if (err) {
-      // En caso de error, devuelve un error 500.
       res.status(500).json({ error: err.message });
       return;
     }
-    // En caso de éxito, devuelve los datos consultados.
     res.json({ devices: rows });
   });
 });
 
-// Define el puerto para el servidor y comienza a escuchar las conexiones.
 const PORT = 3000;
 server.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);

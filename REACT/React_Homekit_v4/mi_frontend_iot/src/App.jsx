@@ -14,6 +14,14 @@ function App() {
       <div className="device-list">
         {devices.map((device) => {
           switch (device.type) {
+            /*   case "ligth":
+              return (
+                <LightToggle
+                  key={device.id}
+                  id={device.id}
+                  status={device.status}
+                />
+              ); */
             case "motion":
               return (
                 <Sensor

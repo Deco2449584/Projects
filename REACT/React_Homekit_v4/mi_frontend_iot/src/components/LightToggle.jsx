@@ -13,7 +13,6 @@ function LightToggle({ status = false, onToggle }) {
     const newState = !isActive;
     console.log("Enviando nuevo estado:", newState); // Agregamos esta línea
     setIsActive(newState);
-
     // Llamar a la función onToggle con el nuevo estado si está definida
     if (onToggle) {
       onToggle(newState);
