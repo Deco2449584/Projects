@@ -3,11 +3,11 @@ import "../scss/components/Principales/Sidebar.scss";
 import { Link } from "react-router-dom";
 import {
   FaHome,
-  FaDesktop,
-  FaBed,
+  FaCouch,
+  FaUtensils,
   FaBath,
-  FaLightbulb,
-  FaEllipsisH,
+  FaBed,
+  FaDesktop,
   FaBars,
 } from "react-icons/fa";
 
@@ -35,11 +35,11 @@ const Sidebar = () => {
       </div>
       <ul className="nav">
         {[
+          { icon: <FaCouch />, name: "Sala", route: "/sala" },
+          { icon: <FaUtensils />, name: "Cocina ", route: "/cocina" },
+          { icon: <FaBed />, name: "Alcoba ", route: "/alcoba" },
           { icon: <FaDesktop />, name: "Estudio", route: "/estudio" },
-          { icon: <FaBed />, name: "Cocina", route: "/cocina" },
-          { icon: <FaBath />, name: "Baño", route: "/baño" },
-          { icon: <FaLightbulb />, name: "Alcoba", route: "/alcoba" },
-          { icon: <FaEllipsisH />, name: "Patio", route: "/patio" },
+          { icon: <FaBath />, name: "Alcoba 2", route: "/alcoba2" },
         ].map((item) => (
           <Link key={item.name} to={item.route} className="nav-item">
             {item.icon}
