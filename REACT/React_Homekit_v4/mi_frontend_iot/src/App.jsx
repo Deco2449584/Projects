@@ -1,43 +1,22 @@
-import Light from "./components/Light";
-import Sensor from "./components/Sensor";
+import "./components/scss/App.scss";
+import Fondo from "./components/Fondo";
+import Sidebar from "./components/Sidebar";
+import Contain from "./components/Contain";
+import Header from "./components/Header";
+import { BrowserRouter } from "react-router-dom";
 import useDevice from "./services/useDevices";
-import MotionSensor from "./components/MotionSensor";
 
 function App() {
   const { deviceData, sendMessage } = useDevice();
 
   return (
-    <div>
-      {deviceData &&
-        deviceData.map((device) => {
-          if (device.type === "light") {
-            return (
-              <Light
-                key={device.id}
-                id={device.id}
-                status={device.status}
-                sendMessage={sendMessage}
-              />
-            );
-          }
-
-          if (device.type === "sensor" && device.value !== null) {
-            return (
-              <Sensor key={device.id} id={device.id} value={device.value} />
-            );
-          }
-          if (device.type === "motion") {
-            return (
-              <MotionSensor
-                key={device.id}
-                id={device.id}
-                status={device.status}
-              />
-            );
-          }
-
-          return null; // Si no cumple con ningún tipo
-        })}
+    <div className="container">
+      <BrowserRouter>
+        <Fondo />
+        <Header deviceData={deviceData} />
+        <Sidebar />
+        <Contain deviceData={deviceData} sendMessage={sendMessage} />
+      </BrowserRouter>
     </div>
   );
 }

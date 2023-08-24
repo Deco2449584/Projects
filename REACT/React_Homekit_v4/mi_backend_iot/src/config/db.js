@@ -11,6 +11,7 @@ db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS devices (
       id TEXT NOT NULL,
+      name TEXT NOT NULL,
       type TEXT NOT NULL,
       status TEXT NOT NULL,
       value REAL,

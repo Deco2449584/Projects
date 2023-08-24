@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+@import "./variables";
+
+.sidebar {
+  font-family: "Roboto", "San Francisco", sans-serif;
+  background-color: $sidebar-bg-color;
+  grid-area: sidebar;
+  position: fixed;
+  top: 150px;
+  left: 0;
+  width: $sidebar-width;
+  padding: $sidebar-padding;
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: width 0.3s ease-in-out;
+  border-radius: 10px;
+
+  .logo_content {
+    color: $text-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: $primary-color;
+      transition: color 0.3s ease;
+      margin-left: -8px; // Desplaza el botón hacia la izquierda
+
+      &:hover {
+        color: $hover-color;
+      }
+    }
+
+    .logo {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 16px;
+
+      .logo_icon {
+        font-size: 1.5rem;
+        color: $primary-color;
+        display: block;
+
+        .sidebar:not(.active) & {
+          display: none;
+        }
+      }
+
+      .logo_name {
+        font-size: 1.4rem;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &.active {
+    width: $sidebar-active-width;
+  }
+
+  .nav {
+    list-style-type: none;
+    padding: 0;
+    gap: 16px;
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 8px 0;
+      border-radius: 8px;
+      font-size: 1.5rem;
+      text-decoration: none;
+
+      svg,
+      .link_name {
+        color: $primary-color;
+        transition: color 0.3s ease;
+      }
+
+      &:hover {
+        svg,
+        .link_name {
+          color: $hover-color; // Color hover para texto e ícono
+        }
+      }
+
+      .link_name {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

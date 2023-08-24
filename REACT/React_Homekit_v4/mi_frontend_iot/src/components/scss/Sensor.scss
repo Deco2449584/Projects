@@ -1,0 +1,39 @@
+@import "./variables";
+
+.sensor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; // Efecto de mano al pasar el ratón
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  z-index: 100;
+  p {
+    margin-left: 10px;
+    font-weight: 900; // Letra en negrita
+    color: $text-color-white; // Color oscuro para el texto
+  }
+  svg {
+    // Estilos para el ícono
+    font-size: 1.5rem;
+    color: $indicadores_on;
+    transition: transform 0.5s ease, color 0.3s ease;
+  }
+
+  &.frio svg {
+    color: $indicadores_temp_frio;
+  }
+  &.tibio svg {
+    color: $indicadores_temp_tibio;
+  }
+  &.caliente svg {
+    color: $indicadores_temp_caliente;
+  }
+}
+@media only screen and (max-width: 769px) {
+  p {
+    margin-left: 5px;
+    font-weight: 500; // Letra en negrita
+    font-size: 10px;
+  }
+}

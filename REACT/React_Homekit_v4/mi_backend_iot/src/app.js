@@ -37,9 +37,9 @@ const io = new socketIo.Server(server, { cors: corsOptions }); // También aplic
 function processAndSaveMessage(data) {
   try {
     const stmt = db.prepare(
-      "INSERT INTO devices (id, type, status, value) VALUES (?, ?, ?, ?)"
+      "INSERT INTO devices (id, name,type, status, value) VALUES (?, ?, ?, ?,?)"
     );
-    stmt.run(data.id, data.type, data.status, data.value || null);
+    stmt.run(data.id, data.name, data.type, data.status, data.value || null);
     stmt.finalize();
   } catch (error) {
     console.error("Error al procesar y guardar el mensaje:", error);

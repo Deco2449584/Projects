@@ -6,10 +6,10 @@ import db from "../config/db.js";
 export const saveMessage = (data) => {
   // Preparamos la consulta SQL.
   const stmt = db.prepare(
-    "INSERT INTO devices (id, type, status, value) VALUES (?, ?, ?, ?)"
+    "INSERT INTO devices (id, name, type, status, value) VALUES (?, ?, ?, ? ,?)"
   );
   // Ejecutamos la consulta, insertando los datos proporcionados. Si el valor es nulo, insertamos null.
-  stmt.run(data.id, data.type, data.status, data.value || null);
+  stmt.run(data.id, data.name, data.type, data.status, data.value || null);
   // Finalizamos la consulta preparada.
   stmt.finalize();
 };

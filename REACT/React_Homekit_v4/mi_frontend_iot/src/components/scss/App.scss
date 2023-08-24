@@ -1,0 +1,54 @@
+// Importa el archivo mixins para utilizarlo en este archivo
+@import "./mixins";
+
+// Estilos para el contenedor principal
+.container {
+  // Permite detectar gestos de pantalla táctil en direcciones específicas
+  touch-action: pan-x pan-y;
+  // Elimina márgenes y rellenos predeterminados
+  margin: 0;
+  padding: 0;
+  // Establece el ancho y alto al 100%
+  width: 100%;
+  height: 100%;
+  // Configura una cuadrícula CSS
+  display: grid;
+  // Define dos filas para la cuadrícula
+  grid-template-rows: 50px auto;
+  // Propiedades de fondo para el contenedor
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  // Estilos adaptativos para teléfonos móviles
+  @include respond(phone) {
+    grid-template-columns: 0fr 1fr;
+    grid-template-areas:
+      "header header"
+      "sidebar contenido";
+  }
+
+  // Estilos adaptativos para tablets en modo retrato
+  @include respond(tablet-portrait) {
+    grid-template-columns: 0fr 3fr;
+    grid-template-areas:
+      "header header"
+      "sidebar contenido";
+  }
+
+  // Estilos adaptativos para tablets en modo paisaje
+  @include respond(tablet-landscape) {
+    grid-template-columns: 0fr 2.5fr;
+    grid-template-areas:
+      "header header"
+      "sidebar contenido";
+  }
+
+  // Estilos adaptativos para escritorio
+  @include respond(desktop) {
+    grid-template-columns: 0fr 2fr;
+    grid-template-areas:
+      "header header"
+      "sidebar contenido";
+  }
+}

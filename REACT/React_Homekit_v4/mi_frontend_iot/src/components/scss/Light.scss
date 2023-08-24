@@ -1,0 +1,81 @@
+@import "./variables";
+
+.light-button {
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, opacity 0.3s;
+  text-align: center;
+  background-color: $off-bg-color;
+  opacity: 0.9;
+  margin: 5px 5px 10px 5px;
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &.active {
+    background-color: $on-bg-color;
+    opacity: 1;
+  }
+
+  .button-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $off-button-color;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+
+    svg {
+      font-size: 30px;
+      color: $off-icon-color;
+    }
+  }
+
+  .button-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: $off-text-color;
+  }
+
+  .button-status {
+    font-size: 12px;
+    color: $off-text-color;
+  }
+
+  &.active {
+    .button-icon {
+      background-color: $on-button-color;
+
+      svg {
+        color: $on-icon-color;
+      }
+    }
+
+    .button-status {
+      color: $on-text-color;
+    }
+  }
+}
+@media only screen and (max-width: 769px) {
+  .light-button {
+    width: 70px;
+    height: 70px;
+    .button-icon {
+      width: 40px;
+    }
+    .button-label {
+      font-size: 10px;
+    }
+    .button-status {
+      font-size: 10px;
+    }
+  }
+}

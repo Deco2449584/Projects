@@ -1,0 +1,34 @@
+@import "./variables";
+
+.motion-sensor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; // Efecto de mano al pasar el ratón
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  z-index: 100;
+  color: $text-color-white;
+  p {
+    margin-left: 10px;
+    font-weight: 900; // Letra en negrita
+  }
+  svg {
+    // Estilos para el ícono
+    font-size: 1.5rem;
+    color: $indicadores_off;
+    transition: transform 0.5s ease, color 0.3s ease;
+  }
+
+  &.active svg {
+    color: $indicadores_on;
+    transform: scale(1.3) rotate(10deg); // Aumentamos un poco y rotamos el ícono
+  }
+}
+@media only screen and (max-width: 769px) {
+  p {
+    margin-left: 5px;
+    font-weight: 500; // Letra en negrita
+    font-size: 10px;
+  }
+}
