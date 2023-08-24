@@ -36,7 +36,7 @@ const Fondo = () => {
   // Esta función se ejecuta automáticamente cuando el componente se monta.
   useEffect(() => {
     // Establecemos un intervalo que cambiará la imagen de fondo cada 15 segundos.
-    intervalRef.current = setInterval(transitionBackground, 10000);
+    intervalRef.current = setInterval(transitionBackground, 20000);
 
     // Esta función se ejecutará cuando el componente se desmonte, deteniendo el intervalo para prevenir errores.
     return () => {

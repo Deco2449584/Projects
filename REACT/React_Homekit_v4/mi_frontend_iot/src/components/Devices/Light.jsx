@@ -47,7 +47,9 @@ const Light = ({ id, name, status: initialStatus, sendMessage }) => {
         <MdHighlight />
       </div>
       <div className="button-label">{name}</div>
-      <div className="button-status">{status ? "Encendido" : "Apagado"}</div>
+      <div className="button-status">
+        {status === "true" ? "Encendido" : "Apagado"}
+      </div>
     </div>
   );
 };
