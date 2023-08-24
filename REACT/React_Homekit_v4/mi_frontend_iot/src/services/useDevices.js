@@ -1,40 +1,58 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 
-const SERVER_URL = "http://localhost:3000";
+const socket = io.connect("http://localhost:3000");
 
-function useDevice() {
-  const [deviceData, setDeviceData] = useState(null);
-  const [socket, setSocket] = useState(null);
+const getLastStateForEachDevice = (devices) => {
+  const deviceMap = new Map();
+  // Procesamos los dispositivos para obtener el último estado de cada uno
+  devices.forEach((device) => {
+    const existingDevice = deviceMap.get(device.id);
+    if (!existingDevice || existingDevice.timestamp < device.timestamp) {
+      deviceMap.set(device.id, device);
+    }
+  });
+
+  return [...deviceMap.values()];
+};
+
+const useDevice = () => {
+  const [deviceData, setDeviceData] = useState([]);
 
   useEffect(() => {
-    const socketConnection = io(SERVER_URL);
-    setSocket(socketConnection);
+    const fetchInitialData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/devices");
+        const data = await response.json();
 
-    socketConnection.on("mqtt", (data) => {
-      console.log("Mensaje recibido del servidor:", data);
-      setDeviceData(data);
-    });
-
-    // Al desmontar el componente, desconectar el socket
-    return () => {
-      socketConnection.disconnect();
+        if (data.devices && data.devices.length > 0) {
+          const processedData = getLastStateForEachDevice(data.devices);
+          setDeviceData(processedData);
+          console.log("Datos procesados:", processedData); // Log de los datos procesados
+        }
+      } catch (error) {
+        console.error("Error fetching initial data:", error);
+      }
     };
+
+    fetchInitialData();
+
+    socket.on("mqtt", (data) => {
+      console.log("Datos recibidos por Socket.io:", data); // Log de los datos recibidos por Socket.io
+      /*  setDeviceData((prevData) => {
+        const updatedData = [...prevData, data];
+        return getLastStateForEachDevice(updatedData);
+      }); */
+      // Procesamos la información nuevamente en caso de que el nuevo dato pueda reemplazar un dato existente
+    });
   }, []);
 
   const sendMessage = (data) => {
-    if (socket) {
-      socket.emit("sendToMqtt", data);
-      console.log("Mensaje enviado al servidor:", data);
-    } else {
-      console.error("Socket no está conectado.");
-    }
+    console.log("Estado  actual del boton", data.status); // Log del estado del botón
+    socket.emit("sendToMqtt", data);
   };
 
-  return {
-    deviceData,
-    sendMessage,
-  };
-}
+  return { deviceData, sendMessage };
+};
 
 export default useDevice;
