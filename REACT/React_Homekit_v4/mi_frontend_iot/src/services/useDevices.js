@@ -38,18 +38,19 @@ const useDevice = () => {
     fetchInitialData();
 
     socket.on("mqtt", (data) => {
-      console.log("Datos recibidos por Socket.io:", data); // Log de los datos recibidos por Socket.io
-      /*  setDeviceData((prevData) => {
-        const updatedData = [...prevData, data];
+      console.log("Datos recibidos por Socket.io:", data);
+      setDeviceData((prevData) => {
+        const updatedData = prevData.map((device) =>
+          device.id === data.id && device.type === data.type ? data : device
+        );
         return getLastStateForEachDevice(updatedData);
-      }); */
-      // Procesamos la información nuevamente en caso de que el nuevo dato pueda reemplazar un dato existente
+      });
     });
   }, []);
 
   const sendMessage = (data) => {
-    console.log("Estado  actual del boton", data.status); // Log del estado del botón
-    socket.emit("sendToMqtt", data);
+    /*     console.log("Estado  actual del boton", data.status); // Log del estado del botón
+     */ socket.emit("sendToMqtt", data);
   };
 
   return { deviceData, sendMessage };

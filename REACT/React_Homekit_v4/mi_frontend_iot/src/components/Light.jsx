@@ -1,8 +1,13 @@
 import PropTypes from "prop-types";
 import "./Light.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 const Light = ({ id, status: initialStatus, sendMessage }) => {
   const [status, setStatus] = useState(initialStatus);
+
+  useEffect(() => {
+    setStatus(initialStatus);
+  }, [initialStatus]);
 
   const toggleStatus = () => {
     const newStatus = status === "true" ? "false" : "true";
