@@ -1,5 +1,7 @@
 import Light from "./components/Light";
+import Sensor from "./components/Sensor";
 import useDevice from "./services/useDevices";
+import MotionSensor from "./components/MotionSensor";
 
 function App() {
   const { deviceData, sendMessage } = useDevice();
@@ -8,7 +10,6 @@ function App() {
     <div>
       {deviceData &&
         deviceData.map((device) => {
-          // Validación para el tipo de componente
           if (device.type === "light") {
             return (
               <Light
@@ -19,11 +20,22 @@ function App() {
               />
             );
           }
-          // Aquí puedes agregar más condiciones para otros tipos de dispositivos
-          // Por ejemplo:
-          // if (device.type === "sensor") {
-          //   return <Sensor ...props />;
-          // }
+
+          if (device.type === "sensor" && device.value !== null) {
+            return (
+              <Sensor key={device.id} id={device.id} value={device.value} />
+            );
+          }
+          if (device.type === "motion") {
+            return (
+              <MotionSensor
+                key={device.id}
+                id={device.id}
+                status={device.status}
+              />
+            );
+          }
+
           return null; // Si no cumple con ningún tipo
         })}
     </div>

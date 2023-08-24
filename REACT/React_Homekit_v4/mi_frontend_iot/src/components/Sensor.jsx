@@ -1,27 +1,20 @@
-//Sensor.jsx
-import PropTypes from "prop-types"; // Importa PropTypes
+import PropTypes from "prop-types";
 import "./Sensor.scss";
+import { FaThermometerHalf } from "react-icons/fa"; // Ícono del sensor. Puedes cambiarlo según tu necesidad.
 
-function Sensor({ id, type, status, value }) {
+const Sensor = ({ id, value }) => {
   return (
-    <div className="sensor">
-      <h2>{type.charAt(0).toUpperCase() + type.slice(1)} Sensor</h2>
-      <p>
-        <strong>ID:</strong> {id}
-      </p>
-      <p>
-        <strong>Estado:</strong> {value ? value : status.toString()}
-      </p>
+    <div className="sensor-container">
+      <FaThermometerHalf className="sensor-icon" />
+      <span className="sensor-value">{value}</span>
+      Sensor {id}
     </div>
   );
-}
+};
 
-// Define las validaciones de props para el componente Sensor
 Sensor.propTypes = {
   id: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  status: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  value: PropTypes.number,
+  value: PropTypes.number.isRequired,
 };
 
 export default Sensor;
