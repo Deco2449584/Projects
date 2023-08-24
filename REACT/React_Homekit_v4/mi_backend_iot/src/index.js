@@ -40,7 +40,9 @@ function processAndSaveMessage(data) {
 
 // Manejador de mensajes recibidos desde el broker MQTT
 mqttClient.on("message", (topic, message) => {
-  console.log(`Recibido del broker MQTT desde el tópico "${topic}"`);
+  console.log(
+    `Recibido del broker MQTT desde el tópico "${topic}" y mensaje ${message} `
+  );
   try {
     const parsedMessage = JSON.parse(message.toString());
     processAndSaveMessage(parsedMessage); // Guarda en DB
@@ -56,6 +58,7 @@ io.on("connection", (socket) => {
     console.log("Mensaje recibido desde el frontend");
     if (data.type) {
       mqttClient.publish(data.type, JSON.stringify(data)); // Publica al broker MQTT
+      processAndSaveMessage(data); // Guarda en DB
       io.emit("mqtt", data); // Emite a los clientes
     } else {
       console.error("Datos incorrectos recibidos desde el frontend");

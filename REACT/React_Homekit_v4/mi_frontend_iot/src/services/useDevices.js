@@ -1,47 +1,40 @@
-import { useState, useEffect } from "react";
-import io from "socket.io-client";
+import { useEffect, useState } from "react";
+import { io } from "socket.io-client";
 
-function useDevices() {
-  const [devices, setDevices] = useState([]);
+const SERVER_URL = "http://localhost:3000";
+
+function useDevice() {
+  const [deviceData, setDeviceData] = useState(null);
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/devices")
-      .then((response) => response.json())
-      .then((data) => {
-        const uniqueDevices = {};
+    const socketConnection = io(SERVER_URL);
+    setSocket(socketConnection);
 
-        data.devices.forEach((device) => {
-          uniqueDevices[device.id] = device;
-        });
-
-        setDevices(Object.values(uniqueDevices));
-      })
-      .catch((error) => {
-        console.error("Error fetching devices:", error);
-      });
-
-    const socket = io("http://localhost:3000");
-
-    socket.on("mqtt", (data) => {
-      setDevices((prevDevices) => {
-        const deviceMap = {};
-
-        prevDevices.forEach((device) => {
-          deviceMap[device.id] = device;
-        });
-
-        deviceMap[data.id] = data;
-
-        return Object.values(deviceMap);
-      });
+    socketConnection.on("mqtt", (data) => {
+      console.log("Mensaje recibido del servidor:", data);
+      setDeviceData(data);
     });
 
+    // Al desmontar el componente, desconectar el socket
     return () => {
-      socket.disconnect();
+      socketConnection.disconnect();
     };
   }, []);
 
-  return devices;
+  const sendMessage = (data) => {
+    if (socket) {
+      socket.emit("sendToMqtt", data);
+      console.log("Mensaje enviado al servidor:", data);
+    } else {
+      console.error("Socket no está conectado.");
+    }
+  };
+
+  return {
+    deviceData,
+    sendMessage,
+  };
 }
 
-export default useDevices;
+export default useDevice;

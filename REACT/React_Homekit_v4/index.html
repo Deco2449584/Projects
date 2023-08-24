@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend Domótica</title>
+  </head>
+  <body>
+    <!-- Botón para enviar un mensaje -->
+    <button onclick="sendMessage(event)">Enviar mensaje</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+      // Conexión al servidor Socket.io
+      const socket = io.connect("http://localhost:3000");
+
+      function sendMessage(event) {
+        // Prevenir el comportamiento predeterminado del botón
+        event.preventDefault();
+
+        const data = {
+          id: "10",
+          type: "light",
+          status: "true",
+        };
+        console.log("Enviando mensaje al servidor:", data);
+        // Emitir el evento 'sendToMqtt' con los datos
+        socket.emit("sendToMqtt", data);
+      }
+
+      socket.on("mqtt", (data) => {
+        console.log("Mensaje recibido del servidor:", data);
+      });
+    </script>
+  </body>
+</html>
